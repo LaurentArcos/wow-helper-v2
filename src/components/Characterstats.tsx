@@ -39,15 +39,21 @@ export default function CharacterStats({ character }: CharacterStatsProps) {
   const [isHovered, setIsHovered] = useState(false);
   const [backgroundImage, setBackgroundImage] = useState<string>("");
 
-  const displayedStats = character.stats
-    ? Object.entries(character.stats).filter(
-        ([key, value]) =>
-          allowedStats.includes(key) &&
-          value !== null &&
-          value !== 0 &&
-          value !== ""
-      )
-    : [];
+  const STATS_FIELDS = [
+    "health", "power", "power_type", "speed_rating_bonus", "armor_value", "speed_rating_normalized",
+    "attack_power", "spell_power", "mana_regen", "strength_effective", "agility_effective",
+    "intellect_effective", "stamina_effective", "melee_crit_value", "melee_haste_value",
+    "main_hand_damage_min", "main_hand_damage_max", "main_hand_speed", "main_hand_dps",
+    "off_hand_damage_min", "off_hand_damage_max", "off_hand_speed", "off_hand_dps",
+    "ranged_crit_value", "ranged_haste_value", "spell_crit_value", "spell_haste_value",
+    "spell_penetration", "mastery_value", "lifesteal_value", "versatility",
+    "versatility_damage_done_bonus", "versatility_healing_done_bonus", "versatility_damage_taken_bonus",
+    "avoidance_rating_bonus", "dodge_value", "parry_value", "block_value", "bonus_armor"
+  ];
+  
+  const displayedStats = STATS_FIELDS
+    .map((field) => [field, character[field as keyof typeof character]])
+    .filter(([, value]) => value !== null && value !== 0 && value !== "");
 
   useEffect(() => {
     const randomImage =

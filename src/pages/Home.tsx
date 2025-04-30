@@ -13,16 +13,16 @@ export default function Home() {
   useEffect(() => {
     async function loadCharacters() {
       const [baseData, statsData] = await Promise.all([
-        fetchSheetData("personnages"),
-        fetchSheetData("stats_personnages"),
+        fetchSheetData<Character>("personnages"),
+        fetchSheetData<Character>("stats_personnages"),
       ]);
   
       // Fusionner sur l'ID
-      const merged = (baseData as Character[]).map((char) => {
-        const stats = (statsData as Character[]).find((s) => s.id === char.id);
+      const merged = baseData.map((char) => {
+        const stats = statsData.find((s) => s.id === char.id);
         return {
           ...char,
-          ...stats, // les valeurs non nulles/vides des stats écrasent les autres
+          ...stats,
         };
       });
   
