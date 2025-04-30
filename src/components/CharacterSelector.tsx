@@ -1,14 +1,12 @@
-type Character = {
-  id: number;
-  name: string;
-  active_title: string | null;
-  level: number;
-  faction: string;
-  avatar_img: string;
-};
+
 
 type CharacterSelectorProps = {
-  characters: Character[];
+  characters: {
+    id: number;
+    name: string;
+    faction: string;
+    avatar_img: string;
+  }[];
   selectedCharacterId: number;
   onSelectCharacter: (id: number) => void;
 };

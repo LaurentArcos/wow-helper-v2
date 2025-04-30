@@ -52,3 +52,55 @@ export default tseslint.config({
   },
 })
 ```
+
+```
+wow-helper-v2
+├─ colors.md
+├─ eslint.config.js
+├─ index.html
+├─ package-lock.json
+├─ package.json
+├─ public
+│  ├─ backgroundImages
+│  │  ├─ chantorage1.jpg
+│  │  ├─ chantorage2.jpg
+│  │  ├─ chantorage3.jpg
+│  │  ├─ chantorage4.jpg
+│  │  ├─ nagrandBC.jpg
+│  │  ├─ stormwind.jpg
+│  │  └─ TavernBackground.jpg
+│  ├─ favicon.ico
+│  ├─ invisible - gold.png
+│  ├─ invisible.png
+│  ├─ LifeCraft_Font.ttf
+│  ├─ visible - gold.png
+│  ├─ visible.png
+│  ├─ warcraft.png
+│  └─ Warcraft.ttf
+├─ README.md
+├─ src
+│  ├─ App.tsx
+│  ├─ assets
+│  │  └─ react.svg
+│  ├─ components
+│  │  ├─ CharacterInfo.tsx
+│  │  ├─ CharacterSelector.tsx
+│  │  ├─ Characterstats.tsx
+│  │  ├─ PriceSection.tsx
+│  │  ├─ SelectedCharacter.tsx
+│  │  └─ Sidebar.tsx
+│  ├─ index.css
+│  ├─ main.tsx
+│  ├─ pages
+│  │  └─ Home.tsx
+│  ├─ types
+│  │  └─ Character.ts
+│  ├─ utils
+│  │  └─ fetchSheetData.ts
+│  └─ vite-env.d.ts
+├─ tsconfig.app.json
+├─ tsconfig.json
+├─ tsconfig.node.json
+└─ vite.config.ts
+
+```
