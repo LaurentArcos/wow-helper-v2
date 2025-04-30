@@ -28,7 +28,9 @@ export default function SelectedCharacter({ character }: SelectedCharacterProps)
       {/* Cercle avec avatar */}
       <div className={`relative w-40 h-40 rounded-full border-6 ${borderColor} overflow-hidden shadow-lg`}>
         {/* Avatar */}
-        <img src={character.avatar_img} alt={character.name} className="w-full h-full object-cover" />
+        <img src={character.avatar_img} alt={character.name} className={`w-full h-full object-cover ${
+            isHovered ? "opacity-50" : "opacity-100"
+          }` }/>
 
         {/* Overlay du nom */}
         <div
