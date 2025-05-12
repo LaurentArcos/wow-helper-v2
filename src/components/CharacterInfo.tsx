@@ -19,9 +19,26 @@ export default function CharacterInfo({ character }: CharacterInfoProps) {
       {character.item_lvl !== undefined && <p><strong>Ilvl :</strong> {character.item_lvl}</p>}
 
       {(character.gold || character.silver || character.copper) && (
-        <p>
-          <strong>Argent :</strong>{" "}
-          {character.gold ?? 0}g {character.silver ?? 0}s {character.copper ?? 0}c
+        <p className="flex items-center gap-2">
+          <strong>Argent :</strong>
+          {character.gold !== undefined && (
+            <span className="flex items-center gap-1">
+              {character.gold}
+              <img src="/gold.gif" alt="gold" className="w-4 h-4 inline" />
+            </span>
+          )}
+          {character.silver !== undefined && (
+            <span className="flex items-center gap-1">
+              {character.silver}
+              <img src="/silver.gif" alt="silver" className="w-4 h-4 inline" />
+            </span>
+          )}
+          {character.copper !== undefined && (
+            <span className="flex items-center gap-1">
+              {character.copper}
+              <img src="/copper.gif" alt="copper" className="w-4 h-4 inline" />
+            </span>
+          )}
         </p>
       )}
 
