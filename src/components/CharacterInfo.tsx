@@ -22,6 +22,7 @@ const classIconMap: Record<string, string> = {
 };
 
 export default function CharacterInfo({ character }: CharacterInfoProps) {
+  
   const classIconName = character.class && classIconMap[character.class];
   const classIconUrl = classIconName
     ? `https://render.worldofwarcraft.com/eu/icons/56/classicon_${classIconName}.jpg`

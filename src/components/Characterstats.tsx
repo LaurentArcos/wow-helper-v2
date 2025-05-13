@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 type CharacterStatValue = string | number | null;
 type CharacterStats = Record<string, CharacterStatValue>;
@@ -11,21 +11,6 @@ type CharacterStatsProps = {
     stats?: CharacterStats;
   };
 };
-
-const backgroundImages = [
-  "/backgroundImages/chantorage1.jpg",
-  "/backgroundImages/chantorage2.jpg",
-  "/backgroundImages/chantorage3.jpg",
-  "/backgroundImages/chantorage4.jpg",
-  "/backgroundImages/nagrandBC.jpg",
-  "/backgroundImages/stormwind.jpg",
-  "/backgroundImages/TavernBackground.jpg",
-  "/backgroundImages/Sainte-Chute1.jpg",
-  "/backgroundImages/Sainte-Chute2.jpg",
-  "/backgroundImages/Thrall-Anduin1.jpg",
-  "/backgroundImages/Thrall-Anduin2.jpg",
-  "/backgroundImages/Azj-Kahet.jpg",
-];
 
 const STATS_FIELDS = [
   "health", "power", "power_type", "speed_rating_bonus", "armor_value", "speed_rating_normalized",
@@ -41,71 +26,34 @@ const STATS_FIELDS = [
 
 export default function CharacterStats({ character }: CharacterStatsProps) {
   const [isHovered, setIsHovered] = useState(false);
-  const [isFullscreen, setIsFullscreen] = useState(false);
-  const [backgroundImage, setBackgroundImage] = useState<string>("");
 
   const displayedStats = STATS_FIELDS
     .map((field) => [field, character[field as keyof typeof character]])
     .filter(([, value]) => value !== null && value !== 0 && value !== "");
 
-  useEffect(() => {
-    changeBackgroundImage();
-  }, []);
-
-  const changeBackgroundImage = () => {
-    const otherImages = backgroundImages.filter(img => img !== backgroundImage);
-    const newImage = otherImages[Math.floor(Math.random() * otherImages.length)];
-    setBackgroundImage(newImage);
-  };
-
   return (
     <div
-      className="relative h-screen flex items-center justify-center overflow-hidden border-r border-gray-300"
+      className="relative h-screen flex items-center justify-center overflow-hidden"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Image de fond */}
+      {/* Filtre sombre uniquement au hover */}
       <div
-        className={`absolute inset-0 z-0 transition-opacity duration-300 ${
-          isHovered && !isFullscreen ? "opacity-30" : "opacity-100"
+        className={`absolute inset-0 z-0 bg-black transition-opacity duration-300 pointer-events-none ${
+          isHovered ? "opacity-60" : "opacity-0"
         }`}
-        style={{
-          backgroundImage: `url(${backgroundImage})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
       />
 
-      {/* Bouton changement de fond */}
-      <button
-        onClick={changeBackgroundImage}
-        className="absolute top-4 right-14 z-40 text-white px-2 py-1 rounded text-3xl transition"
-        title="Changer de fond"
-      >
-        🔄
-      </button>
-
-      {/* Bouton plein écran */}
-      <button
-        onClick={() => setIsFullscreen(!isFullscreen)}
-        className="absolute top-4 right-4 z-40 text-white px-2 py-1 rounded text-3xl transition"
-        title={isFullscreen ? "Quitter le plein écran" : "Afficher le fond seul"}
-      >
-        🖼️
-      </button>
-
       {/* Image du personnage */}
-      {!isFullscreen && (
-        <img
-          src={character.main_raw_img}
-          alt={character.name}
-          className="relative z-20 h-auto max-h-[100%] object-contain transition-opacity duration-300"
-        />
-      )}
+      <img
+        src={character.main_raw_img}
+        alt={character.name}
+        className="absolute left-70 z-10 h-auto max-h-[100%] object-contain transition-opacity"
+      />
 
-      {/* Overlay stats au hover */}
-      {!isFullscreen && isHovered && (
-        <div className="absolute inset-0 p-6 overflow-y-auto z-30">
+      {/* Stats affichées au hover */}
+      {isHovered && (
+        <div className="absolute inset-0 p-6 overflow-y-auto z-20">
           <ul className="space-y-2">
             {displayedStats.map(([key, value]) => (
               <li key={key} className="text-yellow-400">
