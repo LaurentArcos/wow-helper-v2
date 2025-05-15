@@ -55,14 +55,17 @@ export default function CharacterStats({ character }: CharacterStatsProps) {
       {isHovered && (
         <div className="absolute inset-0 p-6 overflow-y-auto z-20">
           <ul className="space-y-2">
-            {displayedStats.map(([key, value]) => (
-              <li key={key} className="text-yellow-400">
-                <span className="font-semibold capitalize text-white">
-                  {key.replace(/_/g, " ")} :
-                </span>{" "}
-                {value}
-              </li>
-            ))}
+{displayedStats.map(([keyRaw, value], index) => {
+  const key = String(keyRaw);
+  return (
+    <li key={index} className="text-yellow-400">
+      <span className="font-semibold capitalize text-white">
+        {key.replace(/_/g, " ")} :
+      </span>{" "}
+      {String(value)}
+    </li>
+  );
+})}
           </ul>
         </div>
       )}
