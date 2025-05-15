@@ -48,7 +48,7 @@ export default function CharacterStats({ character }: CharacterStatsProps) {
       <img
         src={character.main_raw_img}
         alt={character.name}
-        className="absolute left-70 z-10 h-auto max-h-[100%] object-contain transition-opacity"
+        className="absolute left-90 z-10 h-auto max-h-[100%] object-contain transition-opacity"
       />
 
       {/* Stats affichées au hover */}
