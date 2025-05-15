@@ -30,7 +30,7 @@ export default function CharacterInfo({ character }: CharacterInfoProps) {
 
   return (
     <div className="bg-white p-4 rounded shadow space-y-3 text-sm text-center relative flex flex-col items-center">
-      
+    
       {/* Logo faction */}
       {character.faction && (
         <img
