@@ -22,10 +22,10 @@ jobs:
 
       - name: Deploy to Raspberry Pi
         run: |
-          ssh -i ~/.ssh/id_rsa thryndil17@90.119.49.97 '
-            cd /var/www/wow-helper &&
-            git pull origin main &&
-            npm install &&
-            npm run build &&
+          ssh -i ~/.ssh/id_rsa thryndil17@90.119.49.97 << 'EOF'
+            cd /var/www/wow-helper
+            git pull origin main
+            npm install
+            npm run build
             pm2 restart wow-helper
-          '
+          EOF
