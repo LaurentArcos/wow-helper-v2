@@ -13,19 +13,21 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Set up SSH
+      - name: Setup SSH key
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H 90.119.49.97 >> ~/.ssh/known_hosts
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Deploy to Raspberry Pi
         run: |
-          ssh -i ~/.ssh/id_rsa thryndil17@90.119.49.97 << 'EOF'
+          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no thryndil17@90.119.49.97 << 'EOF'
             cd /var/www/wow-helper
             git pull origin main
             npm install
             npm run build
-            pm2 restart wow-helper
+            pm2 restart wow-helper || pm2 start npm --name wow-helper -- run start
           EOF
