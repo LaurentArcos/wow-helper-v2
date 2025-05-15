@@ -45,6 +45,7 @@ export default function CharacterInfo({ character }: CharacterInfoProps) {
       {character.active_title && (
         <h2 className="text-xl font-semibold italic text-gray-700">{character.active_title}</h2>
       )}
+        <p className="text-lg font-semibold">{character.race} {character.gender}</p>
       <p className="text-lg font-medium text-gray-800">
         Niveau {character.level}
         {character.item_lvl !== undefined && ` – ilvl ${character.item_lvl}`}
@@ -55,18 +56,28 @@ export default function CharacterInfo({ character }: CharacterInfoProps) {
         <div className="absolute top-4 right-4 flex flex-col items-center">
           <img src={classIconUrl} alt={character.class} className="w-12 h-12" />
           <span className="text-xs mt-1 text-gray-600">{character.class} {character.spec}</span>
+          <p className="text-xs mt-1 text-gray-600">Royaume {character.realm}</p>
         </div>
       )}
 
       {/* Infos détaillées */}
-      <div className="text-left space-y-1 pt-4">
-        <p><strong>Race :</strong> {character.race}</p>
-        {character.gender && <p><strong>Genre :</strong> {character.gender}</p>}
-        {character.realm && <p><strong>Royaume :</strong> {character.realm}</p>}
+      <div className="text-left space-y-1 pt-1">
+
+        {character.current_exact_position && (
+          <p><strong>Position actuelle :</strong> {character.current_exact_position}</p>
+        )}
+        {character.current_exact_region && (
+          <p><strong>Région actuelle :</strong> {character.current_exact_region}</p>
+        )}
+        {character.hearthstone_bind_position && (
+          <p><strong>Lien de foyer :</strong> {character.hearthstone_bind_position}</p>
+        )}
+        {character.hearthstone_bind_map && (
+          <p><strong>Carte de foyer :</strong> {character.hearthstone_bind_map}</p>
+        )}
 
         {(character.gold || character.silver || character.copper) && (
-          <p className="flex items-center gap-2">
-            <strong>Argent :</strong>
+          <p className="flex justify-center items-center gap-2 mt-6">
             {character.gold !== undefined && (
               <span className="flex items-center gap-1">
                 {character.gold}
@@ -86,19 +97,6 @@ export default function CharacterInfo({ character }: CharacterInfoProps) {
               </span>
             )}
           </p>
-        )}
-
-        {character.current_exact_position && (
-          <p><strong>Position actuelle :</strong> {character.current_exact_position}</p>
-        )}
-        {character.current_exact_region && (
-          <p><strong>Région actuelle :</strong> {character.current_exact_region}</p>
-        )}
-        {character.hearthstone_bind_position && (
-          <p><strong>Lien de foyer :</strong> {character.hearthstone_bind_position}</p>
-        )}
-        {character.hearthstone_bind_map && (
-          <p><strong>Carte de foyer :</strong> {character.hearthstone_bind_map}</p>
         )}
       </div>
     </div>

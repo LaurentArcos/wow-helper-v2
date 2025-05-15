@@ -37,7 +37,7 @@ export default function Home() {
 
       const merged = baseData.map((char) => {
         const stats = statsData.find((s) => s.id === char.id);
-        return { ...stats, ...char }; // <-- priorité à `char`
+        return { ...stats, ...char };
       });
 
       setCharacters(merged);
@@ -110,7 +110,7 @@ return (
         </div>
 
         {/* RIGHT */}
-        <div className="w-full md:w-1/4 flex flex-col bg-black/60 items-center pt-12 gap-8">
+        <div className="w-full md:w-1/4 flex flex-col bg-black/60 items-center pt-16 gap-12">
           <div className="relative w-[400px] h-[400px]">
             <CharacterSelector
               characters={characters}
