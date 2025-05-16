@@ -58,7 +58,7 @@ export default function CharacterStats({ character }: CharacterStatsProps) {
 {displayedStats.map(([keyRaw, value], index) => {
   const key = String(keyRaw);
   return (
-    <li key={index} className="text-yellow-400">
+    <li key={index} className="text-yellow-400 text-sm">
       <span className="font-semibold capitalize text-white">
         {key.replace(/_/g, " ")} :
       </span>{" "}
